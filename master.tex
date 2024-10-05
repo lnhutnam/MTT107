@@ -1,0 +1,40 @@
+\documentclass[a4paper]{report}
+\input{preamble.tex}
+
+\usepackage[backend=bibtex,sorting=nyvt,block=none,defernumbers=true,autolang=other]{biblatex}
+\addbibresource{refs.bib}
+
+
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Mat}{Mat}
+
+\DeclareMathOperator{\gph}{gph}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\epi}{epi}
+
+\title{BÀI TẬP GIẢI TÍCH ĐA TRỊ}
+\author{Lê Nhựt Nam}
+% \date{Dựa trên cuốn sách Functional Analysis, Sobolev Spaces and Partial Differential Equations \\ Thực hiện nghiên cứu và đánh máy: Lê Nhựt Nam - Cử nhân Khoa học Máy tính, Trường Đại học Khoa học Tự nhiên, Đại học Quốc gia TP.HCM}
+\date{
+    $^1$Khoa Toán - Tin học, Trường Đại học Khoa học Tự nhiên\\%
+    $^2$Đại học Quốc gia TP Hồ Chí Minh, Việt Nam\\%
+    \vfill
+    \today
+}
+
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \input{chapter01.tex}
+    \input{chapter02.tex}
+    \input{chapter03.tex}
+    \input{chapter04.tex}
+    \input{chapter05.tex}
+\end{document}
