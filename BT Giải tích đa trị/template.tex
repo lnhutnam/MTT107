@@ -1,0 +1,475 @@
+\documentclass{article}
+
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{svg}
+\usepackage{float}
+
+\usepackage{epigraph}
+
+\setlength\epigraphwidth{.6\textwidth}
+\setlength\epigraphrule{0pt}
+
+\usepackage[vietnamese]{babel}
+
+\input{preamble}
+
+
+\title{BÀI TẬP MỞ VỀ TÍNH LIÊN TỤC CỦA ÁNH XẠ ĐA TRỊ}
+
+
+\author{
+    Lê Nhựt Nam \\
+    Khoa Toán - Tin học, Trường Đại học Khoa học Tự nhiên\\
+    Đại học Quốc gia Thành phố Hồ Chí Minh\\
+    \texttt{nam.lnhut@gmail.com} \\
+}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Đây là lời giải bài tập mở trong môn học Giải tích đa trị - HP3 Toán ứng dụng K33 do thầy PGS. TS. Nguyễn Lê Hoàng Anh giảng dạy. Trong bài tập này, em thực hiện một số chứng minh mở rộng cho một mệnh đề thuộc chủ đề Tính liên tục của hàm đa trị. Mệnh đề này có nội dung thể hiện tính chất liên tục của hàm đa trị thông qua nhân và nghịch ảnh. Phần chứng minh và trình bày của bài làm có thể còn chưa chuẩn và còn nhiều thiếu sót. Em mong nhận được những nhận xét từ thầy.
+\end{abstract}
+
+
+% keywords can be removed
+\keywords{Set-valued analysis, Set-valued function, Continuity, Cores, Inverse images}
+
+\epigraph{\emph{Có ai không trên tận đảo mây trôi?\\
+Quăng xuống đây dải lụa, hỡi ai ơi!\\
+Để mau đem hồn ta đi cõi khác!}}{Chế Lan Viên, ``Ánh sáng''}
+
+\section{Kiến thức chuẩn bị}
+
+\begin{definition}
+    Ta nói ánh xạ đa trị $F$ \textbf{nửa liên tục trên} (\emph{upper semicontinous}, u.s.c) tại $x \in \text{dom}F$ nếu với mọi lân cận $U$ của tập ảnh $F(x)$, tồn tại $\eta > 0$ sao cho $F(x') \subset U, \forall x' \in B(x, \eta)$.
+\end{definition}
+
+\begin{definition}
+    Ta nói ánh xạ đa trị $F$ \textbf{nửa liên tục dưới} (\emph{lower semicontinous, l.s.c} tại $x \in \text{dom}F$ nếu với mọi lân cận $U$ mở thỏa $U \cap F(x) \ne \varnothing$, tồn tại $\eta > 0$ sao cho $F(x') \cap U \ne \varnothing, \forall x' \in B(x, \eta)$.
+\end{definition}
+
+\begin{definition}
+    Cho ánh xạ đa trị $F: X\rightrightarrows Y$. 
+    \begin{enumerate}[label=(\roman*)]
+        \item Nghịch ảnh của tập $M$
+        \begin{equation}
+            F^{-1}(M) := \{x \in X \mid F(x) \cap M \ne \varnothing\}.
+        \end{equation}
+        \item Nhân của tập $M$
+        \begin{equation}
+            F^{+1}(M) := \{x \in X \mid F(x) \subseteq M\}.
+        \end{equation}
+    \end{enumerate}
+\end{definition}
+
+\section{Tính nửa liên tục đặc trưng bởi nghịch ảnh và nhân ảnh của các tập}
+
+Tương tự như đối với hàm đơn vị, ta có thể dùng nghịch ảnh và nhân ảnh của các tập qua ánh xạ đa trị $F$ để đặc trưng cho tính nửa liên tục của $F$. Điều này được phát biểu trong mệnh đề như sau.
+
+\begin{proposition}
+    \label{prop:1}
+    Xét $F: X\rightrightarrows Y$. Khi đó, ta có các khẳng định sau.
+    \begin{enumerate}[label=(\roman*)]
+        \item $F$ là u.s.c tại $x$ khi và chỉ khi nhân của mỗi lân cận của $F(x)$ là một lân cận của $x$. $F$ là l.s.c $x$ khi và chỉ khi nghịch ảnh của một tập mở bất kỳ có giao với $F(x)$ khác rỗng là lận cận của $x$.
+        \item Do đó, $F$ u.s.c khi và chỉ khi nhân của mọi tập mở là mở và $F$ l.s.c khi và chỉ khi nghịch ảnh của mọi tập mở là mở.
+        \item Giả sử $\text{dom}F$ là tập đóng. Khi đó, $F$ l.s.c khi và chỉ khi nhân của mọi tập đóng là đóng và $F$ là u.s.c khi và chỉ khi nghịch ảnh của mọi tập đóng là đóng.
+    \end{enumerate}
+\end{proposition}
+
+
+\section{Chứng minh mệnh đề}
+
+Đây là phần chứng minh cho Mệnh đề~\ref{prop:1}.
+
+\begin{proof}
+    Ta sẽ chứng minh lần lượt từng ý trong mệnh đề.
+    \begin{enumerate}[label=(\roman*)]
+        \item Ta cần chứng minh $F$ là u.s.c tại $x$ khi và chỉ nhân của mỗi lân cận của $F(x)$ là một lân cận của $x$. Trước tiên, ta chứng minh chiều thuận. Giả sử với $U$ là lân cận bất kỳ của $F(x)$ thì $F^{+1}(U)$ là lân cận của $x$. Cần tìm $\eta > 0$ sao cho
+        \begin{equation}
+            F(x') \subseteq U, \quad\forall x' \in B(x, \eta)
+        \end{equation}
+        Thật vậy, ta luôn tìm được $\eta > 0$ sao cho $B(x, \eta) \subseteq F^{+1}(U)$.
+        Vì vậy mà, ta có
+        \begin{equation}
+            F(x') \subseteq F(F^{+1}(U)) \subseteq U
+        \end{equation}
+        tức là $F$ u.s.c tại $x$.
+
+        Ngược lại, giả sử rằng $F$ u.s.c tại $x$ và U là lân cận bất kỳ của $F(x)$. Theo định nghĩa của u.s.c, tồn tại $\eta > 0$ sao cho
+        \begin{equation}
+            F(x') \subseteq U,\quad \forall x' \in B(x, \eta)
+        \end{equation}
+        Do đó, $B(x, \eta) \subseteq F^{(+1)}(U)$, tức là $F^{(+1)}(U)$ là lân cận của $x$. Như vậy, ta suy ra điều phải chứng minh.
+
+        Ta cần chứng minh rằng $F$ là l.s.c tại $x$ khi và chỉ khi nghịch ảnh của một tập mở bất kỳ có giao với $F(x)$ khác rỗng là lận cận của $x$. Trước tiên, ta chứng minh chiều thuận. Giả sử với $U$ là lân cận bất kỳ của $F(x)$ thì $F^{-1}(U)$ là lân cận của $x$. Cần tìm $\eta > 0$ sao cho 
+        \begin{equation}
+            F(x') \cap U \ne \varnothing, \quad\forall x' \in B(x, \eta),
+        \end{equation}
+        Thật vậy,
+        \begin{equation}
+            F(x') \cap F(F^{-1}(U) \ne \varnothing \Leftrightarrow F(x') \cap U \ne \varnothing,
+        \end{equation}
+        tức là $F$ l.s.c tại $x$.
+
+        Ngược lại, giả sử rằng $F$ l.s.c tại $x$ và $U$ là lân cận bất kỳ của $F(x)$. Theo định nghĩa của l.s.c, tồn tại $\eta > 0$ sao cho
+        \begin{equation}
+            F(x') \cap U \ne \varnothing,\quad \forall x' \in B(x, \eta).
+        \end{equation}
+        Do đó, $B(x, \eta) \cap F^{-1}(U) \ne \varnothing$, tức là $F^{-1}$ là lân cận của $x$. Như vậy, ta suy ra điều phải chứng minh.
+
+        \item Từ câu trên, ta có $F$ là u.s.c tại $x$ khi và chỉ nhân của mỗi lân cận của $F(x)$ là một lân cận của $x$. Suy ra $F$ u.s.c khi và chỉ khi nhân của mọi tập mở là mở.
+
+        Một cách tương tự, $F$ là l.s.c $x$ khi và chỉ khi nghịch ảnh của một tập mở bất kỳ có giao với $F(x)$ khác rỗng là lận cận của $x$. Suy ra $F$ l.s.c khi và chỉ khi nghịch ảnh của mọi tập mở là mở.
+
+        \item Giả sử rằng $F$ l.s.c và $V \subseteq Y$ là tập đóng. Khi đó $Y \setminus V$ là tập mở. Ta phải chứng minh rằng $F^{+1}(V)$ là tập đóng, tức là $X \setminus F^{+1}(V)$ mở. Xét bất kỳ $x \in X \setminus F^{+1}(V)$ thì $F(x) \cap (Y\setminus V) \ne \varnothing$. Theo định nghĩa của l.s.c, tồn tại $\eta > 0$ sao cho 
+        \begin{equation}
+            F(x') \cap (Y\setminus V) \ne \varnothing,\quad \forall x' \in B(x, \eta)
+        \end{equation}
+        Điều đó có nghĩa là 
+        \begin{equation}
+            B(x, \eta) \subseteq X \setminus F^{+1}(V)
+        \end{equation}
+        Vậy $X \setminus F^{+1}(V)$ mở.
+
+        Ngược lại, giả sử nhân của mọi tập đóng là tập đóng. Ta chứng minh rằng $F$ l.s.c bằng cách áp dụng kết quả (ii). Xét tập $U$ mở bất kỳ. Khi đó $Y \setminus U$ đóng và $F^{+1}(Y\setminus U)$ đóng, tức là $X \setminus F^{+1}(Y \setminus U)$ mở. Ta có:
+        \begin{align}
+            X \setminus F^{+1}(Y \setminus U) = F^{-1}(U)
+        \end{align}
+        Thế nên $F^{-1}(U)$ là mở. Theo kết quả (ii), F l.s.c.
+
+        Giả sử rằng $F$ là u.s.c và $V \subseteq Y$ là tập đóng. Khi đó $Y \setminus V$ là tập mở. Ta phải chứng minh rằng $F^{-1}(V)$ là tập đóng, tức là $X \setminus F^{-1}(V)$ mở.  Xét bất kỳ $x \in X \setminus F^{-1}(V)$ thì $F(x) \subseteq (Y \setminus V)$. Theo định nghĩa của u.s.c, tồn tại $\eta > 0$ sao cho
+        \begin{equation}
+            F(x') \subseteq (Y \setminus V), \quad\forall x' \in B(x, \eta)
+        \end{equation}
+        Điều đó có nghĩa là 
+        \begin{equation}
+            B(x, \eta) \subseteq X \setminus F^{-1}(V)
+        \end{equation}
+        Vậy $X \setminus F^{-1}(V)$ mở.
+
+        Ngược lại, giả sử nghịch ảnh của mọi tập đóng là tập đóng. Ta chứng minh rằng $F$ u.s.c bằng cách áp dụng kết quả ở (ii). Xét tập $U$ mở bất kỳ. Khi đó $Y \setminus U$ đóng và $F^{-1}(Y\setminus U)$ đóng, tức là $X \setminus F^{-1}(Y \setminus U)$ mở. Ta có:
+        \begin{align}
+            X \setminus F^{-1}(Y \setminus U) = F^{-1}(U)
+        \end{align}
+        Thế nên $F^{-1}(U)$ là mở. Theo kết quả (ii), F u.s.c.
+    \end{enumerate}
+\end{proof}
+
+\section{Ví dụ minh họa}
+
+\begin{example}
+    Xét ánh xạ đa trị $F_1: \R \rightrightarrows [-1, 1]$ định nghĩa bởi
+    \begin{equation}
+        F_1(x) := \begin{cases}
+            [-1, +1],\quad\text{ nếu } x \ne 0,\\
+            \{0\},\quad\quad\quad\text{ nếu } x = 0,\\
+        \end{cases}
+    \end{equation}
+    Ta có đồ thị của $F_1$ như sau:
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=0.5\columnwidth]{f1.svg}
+        \label{fig:f1}
+    \end{figure}
+    Xét tại điểm $x_0 = 0$. Giả sử với $U$ là lân cận bất kỳ của $F_1(x_0)$,
+    ta có $U$ có dạng như sau:
+    \begin{equation}
+        U = (-\epsilon, \epsilon) \setminus \{0\}, \quad\forall \epsilon \text{ đủ nhỏ}
+    \end{equation}
+    Ta có:
+    \begin{equation}
+        F_1^{-1}(U) = \{x \in \R \mid F_1(x) \cap U \ne \varnothing\}
+        = \R \setminus \{0\}
+    \end{equation}
+    Cần tìm $\eta > 0$ sao cho 
+    \begin{equation}
+        F_1(x') \cap U \ne \varnothing, \quad\forall x' \in B(0, \eta),
+    \end{equation}
+    Thật vậy, ta có thể chọn $\eta = 1$ 
+    \begin{equation}
+        F_1(x') \cap F_1(F_1^{-1}(U) = [-1, 1] \ne \varnothing, \forall x' \in B(0, 1) \Leftrightarrow F_1(x') \cap U \ne \varnothing
+    \end{equation}
+    tức là $F_1$ l.s.c tại $x_0 = 0$.
+
+    Ngược lại, giả sử rằng $F_2$ l.s.c tại $x_0 = 0$ và $U$ là lân cận bất kỳ của $F_1(x_0)$. Ta có dạng của $U$:
+    \begin{equation}
+        U = (-\epsilon, \epsilon)  \setminus \{0\}, \quad\forall \epsilon \text{ đủ nhỏ}
+    \end{equation}
+    Thì ta có:
+    \begin{equation}
+        F_1^{-1}(U) = \{0\}
+    \end{equation}
+    Theo định nghĩa của l.s.c, ta cần chỉ ra tồn tại $\eta > 0$ sao cho
+    \begin{equation}
+        F_1(x') \cap U \ne \varnothing,\quad\forall x' \in B(0, \eta)
+    \end{equation}
+    Ta chọn $\eta = 1$, thì rõ ràng $B(0, 1) \cap F_1^{-1}(U) \ne \varnothing$, tức là $F_1^{-1}(U)$ là lân cận của $x_0$. Như vậy, ta có kết luận $F_1$ l.s.c tại $x_0 = 0$. 
+
+    Tương tự, ta có thể dễ dàng chứng minh được nhân của mỗi lân cận của $F_1(x_0)$ không là lân cận của $x_0$. Do đó, $F_1(x)$ không u.s.c tại $x_0$. Các chứng minh cổ điển đã được giới thiệu trên lớp hoàn toàn có thể áp dụng để xác minh cho các kết quả này. 
+\end{example}
+
+\begin{example}
+    Xét ánh xạ đa trị $F_2: \R \rightrightarrows [-1, 1]$ định nghĩa bởi
+    \begin{equation}
+        F_2(x) := \begin{cases}
+            [-1, +1],\quad\text{ nếu } x = 0,\\
+            \{0\},\quad\quad\quad\text{ nếu } x \ne 0,\\
+        \end{cases}
+    \end{equation}
+    Ta có đồ thị của $F_2$ như sau:
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=0.5\columnwidth]{f2.svg}
+        \label{fig:f2}
+    \end{figure}
+    Xét tại điểm $x_0 = 0$. Giả sử với $U$ là lân cận bất kỳ của $F_2(x_0)$ thì $F_2^{+1}(U)$ là lân cận của $x$. Ta cần tìm $\eta > 0$ sao cho
+    \begin{equation}
+        F_2(x') \subseteq U, \quad\forall x' \in B(x, \eta),
+    \end{equation}
+    Thật vậy, với $x_0 = 0$ thì lân cận $U$ có dạng $U = (-1- \epsilon, 1 + \epsilon) \setminus \{0\},\quad\forall \epsilon \text{ đủ nhỏ}$. Ta dễ dàng tìm được $F^{+1}(U)$
+    \begin{equation}
+        F_2^{+1}(U) = \{x \in \R \mid F_2(x) \subseteq U\} = \{0\}
+    \end{equation}
+    Chọn $\eta = 1$ sao cho $B(0, 1) \subseteq F_2^{+1}(U)$, tức $F_2^{+1}(U)$ là một lân cận của $x$. Vì thế 
+    \begin{equation}
+        F_2(x') \subseteq F_2(F_2^{+1}(U)) = F_2(0) = [-1, +1] \subseteq U
+    \end{equation}
+    tức là $F_2$ u.s.c tại $x$.
+
+    Ngược lại, giả sử rằng $F_2$ u.s.c tại $x_0 = 0$ và $U$ là một lân cận bất kỳ của $F_2(x_0)$. $U$ có dạng như sau:
+    \begin{equation}
+        U = [-1-\epsilon, 1 + \epsilon]
+    \end{equation}
+    Theo định nghĩa của u.s.c, tồn tại $\eta > 0$ sao cho
+    \begin{equation}
+        F_2(x') \subseteq U, \forall x' \in B(0, \eta)
+    \end{equation}
+    Ta chọn $\eta = 1$, rõ ràng $B(0, 1) \subseteq F_2^{+1}(U) = \{0\}$, tức là $F_2^{+1}(U)$ là lân cận của $x_0 = 0$.
+
+    Như vậy, $F_2$ u.s.c tại $x_0 = 0.$
+
+
+    Tương tự, ta có thể dễ dàng chứng minh được nghịch ảnh của của một tập mở bất kỳ có giao với $F_2(x_0)$ không là lân cận của $x_0 = 0$. Do đó, $F_2(x)$ không l.s.c tại $x_0$. Các chứng minh cổ điển đã được giới thiệu trên lớp hoàn toàn có thể áp dụng để xác minh cho các kết quả này. 
+\end{example}
+
+\begin{example}[l.s.c, không u.s.c,  u.s.c dạng dãy]
+     Xét ánh xạ đa trị $F_3: \R \rightrightarrows [-1, 1]$ định nghĩa bởi
+    \begin{equation}
+        F_3(x) := \begin{cases}
+            \{0\},\quad\text{ nếu } x = 0,\\
+            [-1, 0],\quad\text{ nếu } x = \frac{1}{n}, n \text{ chẵn}\\
+            [0, 1],\quad\text{ nếu } x = \frac{1}{n}, n \text{ lẻ}\\
+        \end{cases}
+    \end{equation}
+    Ta có đồ thị của $F_3$ như sau:
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=0.5\columnwidth]{f3.svg}
+        \label{fig:f3}
+    \end{figure}
+    Xét tại điểm $x_0 = 0$. Gọi $V \in [-1, 1]$ là một tập con đóng chứa $x_0$. Khi đó, $Y \setminus V$ là tập mở. Ta có:
+    \begin{equation}
+        F_3^{+1}(V) = \{x \in \R \mid F_3(x) \subseteq V\} = [-1, 1]
+    \end{equation}
+    Xét bất kỳ $x \in X \setminus [-1, 1]$, ta có $F_3(x) \cap ([-1, 1] \setminus V) \ne \varnothing$. Ta cần tìm $\eta > 0$ sao cho 
+    \begin{equation}
+        F(x') \cap ([-1, 1] \setminus V) \ne \varnothing,\quad \forall x' \in B(x, \eta)
+    \end{equation}
+    Chọn $\eta = 1$, hiển nhiên 
+    \begin{equation}
+        B(x, 1) \subseteq \R \setminus [-1, 1]
+    \end{equation}
+    Nên $\R \setminus [-1, 1]$ mở. 
+
+    Chứng minh ngược lại, ta kết luận $F_3$ l.s.c
+\end{example}
+
+
+\begin{example}[Không l.s.c, u.s.c, u.s.c theo dạng dãy]
+    Xét ánh xạ đa trị $F_4: \R \rightrightarrows [-1, 1]$ định nghĩa bởi
+    \begin{equation}
+        F_4(x) := \begin{cases}
+            \{1\},\quad\text{ nếu } x > 0,\\
+            [-1, 1],\quad\text{ nếu } x = 0\\
+            \{-1\},\quad\text{ nếu } x <0
+        \end{cases}
+    \end{equation}
+    Ta có đồ thị của $F_4$ như sau:
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=0.5\columnwidth]{f4.svg}
+        \label{fig:f4}
+    \end{figure}
+    Xét tại điểm $x_0 = 0$. Gọi $V \subseteq [-1, 1]$ là tập đóng. Khi đó $Y \setminus V$ là tập mở. Ta kiểm tra xem $R \setminus F_4^{-1}(V)$ có phải là tập mở hay không. Xét bất kỳ $x \in R \setminus F_4^{-1}(V)$, có nghĩa là 
+    \begin{equation}
+        x \in \R \setminus [-1, 1]
+    \end{equation}
+    Ta có:
+    \begin{equation}
+        F_4(x) \subseteq [-1, 1] \setminus V
+    \end{equation}
+    Ta cần tìm $\eta > 0$ sao cho 
+    \begin{equation}
+        F(x') \subseteq [-1, 1] \setminus V, \quad \forall x' \in B(x, \eta)
+    \end{equation}
+    Chọn $\eta = 1$,bảo hàm thức thỏa.
+    Điều đó có nghĩa là 
+    \begin{equation}
+        B(x, 1) \subseteq \R \setminus [-1, 1] 
+    \end{equation}
+    Và $\R \setminus [-1, 1]$ mở.
+
+    Chứng minh ngược lại, ta kết luận được $F_4$ u.s.c.
+\end{example}
+
+\section{Xem xét thay đổi điều kiện Mệnh đề 1 (i)}
+
+\begin{question}
+    Liệu có thể: $F$ là u.s.c tại $x$ khi và chỉ khi nghịch ảnh của mỗi lân cận của $F(x)$ là một lân cận của $x$. $F$ là l.s.c $x$ khi và chỉ khi nhân của một tập mở bất kỳ có giao với $F(x)$ khác rỗng là lận cận của $x$.
+\end{question}
+
+\begin{remark}
+    Ta cần chứng minh $F$ là u.s.c tại $x$ khi và chỉ khi nghịch ảnh của mỗi lân cận của $F(x)$ là một lân cận của $x$. Trước tiên, ta xem xét chiều thuận. Giả sử với $U$ là lân cận bất kỳ của $F(x)$ thì $F^{-1}(U)$ là lân cận của $x$. Cần tìm $\eta > 0$ sao cho
+    \begin{equation}
+        F(x') \cap U \ne \varnothing, \quad\forall x' \in B(x, \eta)
+    \end{equation}
+    Khi đó, sẽ tồn tại một $\eta > 0$ để $B(x, \eta) \cap F^{-1}(x) = \varnothing$.Vì thế,
+    \begin{equation}
+        F(x') \nsubseteq F(F^{-1}(U)
+    \end{equation}
+    tức, $F$ không thể u.s.c tại $x$.
+
+    Ngược lại, giả sử rằng $F$ u.s.c tại $x$ và U là lân cận bất kỳ của $F(x)$. Theo định nghĩa của u.s.c, tồn tại $\eta > 0$ sao cho
+    \begin{equation}
+        F(x') \subseteq U,\quad \forall x' \in B(x, \eta)
+    \end{equation}
+    Ta không chắc bao hàm thức $B(x, \eta) \subseteq F^{(-1)}(U)$ có thể xảy ra, nên $F^{(-1)}(U)$ không chắc là lân cận của $x$. Như vậy, ta không thể suy ra điều phải chứng minh.
+\end{remark}
+
+\begin{example}
+    Xét ánh xạ đa trị $F_1: \R \rightrightarrows \R$ định nghĩa bởi
+    \begin{equation}
+        F_1(x) := \begin{cases}
+            [-1, +1],\quad\text{ nếu } x \ne 0,\\
+            \{0\},\quad\quad\quad\text{ nếu } x = 0,\\
+        \end{cases}
+    \end{equation}
+    Ta có đồ thị của $F_1$ như sau:
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=0.5\columnwidth]{f1.svg}
+        \label{fig:f1}
+    \end{figure}
+    Xét tại điểm $x_0 = 0$. Giả sử với $U$ là lân cận bất kỳ của $F_1(x_0)$ thì $F_1^{-1}(U)$ là lân cận của $x_0$.
+    Ta có
+    \begin{equation}
+        U = [- \epsilon,+ \epsilon] \setminus \{0\}, \quad\forall \epsilon \text{ đủ nhỏ}
+    \end{equation}
+    Như vậy
+    \begin{equation}
+        F_2^{-1}(U) = \{x \in \R \mid F_2(x) \cap U \ne \varnothing\} = [-1, 1] \setminus \{0\}
+    \end{equation}
+    Rõ ràng, $F_1^{-1}(U)$ không là lân cận của $x_0$. Thế nên, ta không có kết luận nào về tính u.s.c của $F_1$.
+\end{example}
+
+\begin{remark}
+    Ta cần chứng minh rằng $F$ là l.s.c tại $x$ khi và chỉ khi nhân của một tập mở bất kỳ có giao với $F(x)$ khác rỗng là lận cận của $x$. Trước tiên, ta xem xét chiều thuận. Giả sử với $U$ là lân cận bất kỳ của $F(x)$ thì $F^{+1}(U)$ là lân cận của $x$. Cần tìm $\eta > 0$ sao cho 
+    \begin{equation}
+        F(x') \subseteq U, \quad\forall x' \in B(x, \eta),
+    \end{equation}
+    Ta có thể chọn được giá trị $\eta > 0$ sao cho
+    \begin{equation}
+        B(x, \eta) \nsubseteq F^{-1}(U)
+    \end{equation}
+    Thế nên,
+    \begin{equation}
+        F(x') \nsubseteq F(F^{+1}(U)) \nsubseteq U
+    \end{equation}
+    tức là $F$ không thể l.s.c tại $x$.
+
+    Ngược lại, giả sử rằng $F$ l.s.c tại $x$ và $U$ là lân cận bất kỳ của $F(x)$. Theo định nghĩa của l.s.c, tồn tại $\eta > 0$ sao cho
+    \begin{equation}
+        F(x') \cap U \ne \varnothing,\quad \forall x' \in B(x, \eta).
+    \end{equation}
+    Ta không chắc $B(x, \eta) \cap F^{+1} \ne \varnothing$, tức là $F^{+1}$ không là lân cận của $x$. Như vậy, ta không thể suy ra điều phải chứng minh.
+\end{remark}
+
+\begin{example}
+    Xét ánh xạ đa trị $F_2: \R \rightrightarrows \R$ định nghĩa bởi
+    \begin{equation}
+        F_2(x) := \begin{cases}
+            [-1, +1],\quad\text{ nếu } x = 0,\\
+            \{0\},\quad\quad\quad\text{ nếu } x \ne 0,\\
+        \end{cases}
+    \end{equation}
+    Ta có đồ thị của $F_2$ như sau:
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=0.5\columnwidth]{f2.svg}
+        \label{fig:f1}
+    \end{figure}
+    Xét tại điểm $x_0 = 0$. Giả sử với $U$ là lân cận bất kỳ của $F_2(x_0)$ thì $F_2^{+1}(U)$ là lân cận của $x_0$. Ta có
+    \begin{equation}
+        U = [-1 - \epsilon, 1 + \epsilon] \setminus \{0\}, \quad\forall \epsilon \text{ đủ nhỏ}
+    \end{equation}
+    Như vậy
+    \begin{equation}
+        F_2^{+1}(U) = \{x \in \R \mid F_2(x) \subseteq U\} = \{0\}
+    \end{equation}
+    Rõ ràng, $F_2^{+1}(U)$ không là lân cận của $x_0$. Thế nên, ta không có kết luận nào về tính l.s.c của $F_2$.
+\end{example}
+
+\section{Phân tích ý nghĩa giả thiết $\text{dom}F$ đóng}
+
+\begin{question}
+    Giả thiết $\text{dom}F$ đóng có vai trò gì trong Mệnh đề~\ref{prop:1}?
+\end{question}
+
+\begin{remark}
+    Theo em nghĩ thì giả thiết $\text{dom}F$ đóng có vai trò quan trọng trong phần chứng minh Mệnh đề~\ref{prop:1}. Giả thiết này đảm bảo 
+    \begin{enumerate}
+        \item không có điểm nào "thoát ra" khỏi tập xác định khi xét tính nửa liên tục dưới.
+        \item Và đảm bảo rằng các điểm nằm trong tập xác định của hàm sẽ được bảo toàn khi xét nghịch ảnh của các tập đóng khi xem xét nửa liên tục trên.
+    \end{enumerate}
+\end{remark}
+
+\section{Xem xét thay đổi điều kiện Mệnh đề 1 (iii)}
+
+\begin{question}
+    Liệu có thể: Giả sử $\text{dom}F$ là tập đóng. Khi đó, $F$ l.s.c khi và chỉ khi nghịch ảnh của mọi tập đóng là đóng và $F$ là u.s.c khi và chỉ khi nhân của mọi tập đóng là đóng.
+\end{question}
+
+\begin{remark}
+    Nếu xem xét lại Ví dụ 3 và 4, ta sẽ thấy khi thay đổi điều kiện như vậy thì không kết luận được ánh xạ có l.s.c hay u.s.c hay không. 
+\end{remark}
+
+
+\bibliographystyle{unsrt}  
+%\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
+%%% and comment out the ``thebibliography'' section.
+
+
+%%% Comment out this section when you \bibliography{references} is enabled.
+\begin{thebibliography}{1}
+
+\bibitem{kour2014real}
+Jean-Pierre Aubin.
+\newblock Set-valued analysis.
+\newblock 1999
+\end{thebibliography}
+
+
+\end{document}

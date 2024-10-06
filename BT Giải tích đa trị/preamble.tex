@@ -1,0 +1,104 @@
+% Special sets
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\GG}{\mathbb{G}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\H}{\mathbb{H}}
+
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{enumitem}
+
+
+\makeatother
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{ForestGreen!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+    }
+]{thmgreenbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+    }
+]{thmbluebox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue
+    }
+]{thmblueline}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{RawSienna!70!black}, bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!5,
+    }
+]{thmredbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{RawSienna!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!1,
+    },
+    qed=\qedsymbol
+]{thmproofbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{NavyBlue!70!black}, bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
+    },
+]{thmexplanationbox}
+
+\declaretheorem[style=thmgreenbox, name=Định nghĩa]{definition}
+\declaretheorem[style=thmbluebox, name=Ví dụ]{example}
+\declaretheorem[style=thmredbox, name=Mệnh đề]{proposition}
+\declaretheorem[style=thmredbox, name=Định lý]{theorem}
+\declaretheorem[style=thmredbox, name=Bổ đề]{lemma}
+\declaretheorem[style=thmredbox, name=Hệ quả]{corollary}
+\declaretheorem[style=thmproofbox, name=Chứng minh]{replacementproof}
+\renewenvironment{proof}[1][\proofname]{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
+
+\declaretheorem[style=thmexplanationbox, name=Chứng minh]{tmpexplanation}
+\newenvironment{explanation}[1][]{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
+
+\declaretheorem[style=thmblueline, name=Nhận xét]{remark}
+\declaretheorem[style=thmblueline, name=Lưu ý]{note}
+\declaretheorem[style=thmblueline, name=Câu hỏi]{question}
+
+\newtheorem*{uovt}{UOVT}
+\newtheorem*{notation}{Ký hiệu}
+\newtheorem*{previouslyseen}{Như đã thấy trước đây}
+\newtheorem*{problem}{Bài toán}
+\newtheorem*{observe}{Quan sát}
+\newtheorem*{property}{Tính chất}
+\newtheorem*{intuition}{Trực giác}
+
+\makeatletter
